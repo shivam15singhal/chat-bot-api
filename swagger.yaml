@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Chatbot API Backend
+  description: A RESTful API to manage chatbot conversations, messages, and users.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+
+    Message:
+      type: object
+      properties:
+        _id:
+          type: string
+        conversationId:
+          type: string
+        senderId:
+          type: string
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    Conversation:
+      type: object
+      properties:
+        _id:
+          type: string
+        participants:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+
+security:
+  - bearerAuth: []
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Invalid input
+
+  /api/auth/login:
+    post:
+      summary: Login and retrieve JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials
+
+  /api/messages:
+    post:
+      summary: Add a new message
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: Message added
+
+  /api/messages/{id}:
+    delete:
+      summary: Delete a message by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Message ID
+      responses:
+        '200':
+          description: Message deleted
+        '404':
+          description: Message not found
+
+  /api/conversations:
+    get:
+      summary: Get all conversations for a user
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: List of conversations
+
+    post:
+      summary: Create a new conversation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                participants:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Conversation created

@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "Chatbot API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"rohit\", \"email\": \"rohit@example.com\", \"password\": \"Rohit@45\", \"role\": \"user\"}"
+        }
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"rohit@example.com\", \"password\": \"Rohit@45\"}"
+        }
+      }
+    },
+    {
+      "name": "Create Conversation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTk1NWI1MDRlOGViNDg0Yzg4MmEyMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwNjg1MjM1LCJleHAiOjE3NTA3NzE2MzV9.cbS4moxnkL77vOwG0N1CP3v2OechbP8hBS7isqVV1n4"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/conversations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "conversations"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"participants\": [\"virat@example.com\", \"rohit@example.com\"]}"
+        }
+      }
+    },
+    {
+      "name": "Add Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTk1NWI1MDRlOGViNDg0Yzg4MmEyMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwNjg1MjM1LCJleHAiOjE3NTA3NzE2MzV9.cbS4moxnkL77vOwG0N1CP3v2OechbP8hBS7isqVV1n4"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/messages",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "messages"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"conversationId\": \"685956e704e8eb484c882a27\", \"sender\": \"685955b504e8eb484c882a20\", \"content\": \"Hi, this is Virat!\"}"
+        }
+      }
+    },
+    {
+      "name": "Get Message by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTk1NWI1MDRlOGViNDg0Yzg4MmEyMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwNjg1MjM1LCJleHAiOjE3NTA3NzE2MzV9.cbS4moxnkL77vOwG0N1CP3v2OechbP8hBS7isqVV1n4"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/messages/685956e704e8eb484c882a27",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "messages",
+            "685956e704e8eb484c882a27"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Message",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTk1NWI1MDRlOGViNDg0Yzg4MmEyMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwNjg1MjM1LCJleHAiOjE3NTA3NzE2MzV9.cbS4moxnkL77vOwG0N1CP3v2OechbP8hBS7isqVV1n4"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/messages/68595af0757f7f7188b7513a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "messages",
+            "68595af0757f7f7188b7513a"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"content\": \"Hi, this is Virat updated!\"}"
+        }
+      }
+    },
+    {
+      "name": "Delete Message",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTk1NWI1MDRlOGViNDg0Yzg4MmEyMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUwNjg1MjM1LCJleHAiOjE3NTA3NzE2MzV9.cbS4moxnkL77vOwG0N1CP3v2OechbP8hBS7isqVV1n4"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/messages/68595af0757f7f7188b7513a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "messages",
+            "68595af0757f7f7188b7513a"
+          ]
+        }
+      }
+    }
+  ]
+}

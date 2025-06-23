@@ -1,0 +1,15 @@
+# Node modules (never commit)
+node_modules/
+
+# Environment variables (keep secrets private)
+.env
+
+# Build output (if you later add it)
+dist/
+
+# Logs
+*.log
+
+# OS/system files
+.DS_Store
+Thumbs.db
